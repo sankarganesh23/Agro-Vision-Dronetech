@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Add our app-specific colors
+				"rice": {
+					"50": "#f2f8f2",
+					"100": "#e0ede0",
+					"200": "#c4dcc5",
+					"300": "#9cc39e",
+					"400": "#71a474",
+					"500": "#528755",
+					"600": "#3f6d42",
+					"700": "#345836",
+					"800": "#2c462e",
+					"900": "#263b27",
+					"950": "#122012",
 				}
 			},
 			borderRadius: {
