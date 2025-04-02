@@ -1,7 +1,7 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
+import { Leaf } from 'lucide-react';
 
 const Landing = () => {
   const { user } = useAuth();
@@ -41,11 +41,11 @@ const Landing = () => {
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <img 
-                src="/lovable-uploads/1bd73c41-65f4-4603-823f-c4d9e728a374.png" 
-                alt="Rice crop field" 
-                className="max-w-full h-auto rounded-lg shadow-lg" 
-              />
+              <div className="bg-rice-600 rounded-lg shadow-lg p-8 flex flex-col items-center justify-center">
+                <Leaf className="w-32 h-32 text-white mb-4" />
+                <h2 className="text-2xl font-bold text-white">Agrovision</h2>
+                <p className="text-white/80 text-center mt-2">AI-Powered Rice Crop Disease Detection</p>
+              </div>
             </div>
           </div>
         </div>
