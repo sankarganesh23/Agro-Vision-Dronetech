@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Home, Upload, BarChart, User, LogOut } from 'lucide-react';
+import { Home, Upload, BarChart, User, LogOut, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/components/ui/use-toast';
 import { useState } from 'react';
@@ -28,6 +28,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
 
   const navigation = [
     { name: 'Dashboard', path: '/dashboard', icon: Home },
+    { name: 'Farmer Details', path: '/farmer-details', icon: Users },
     { name: 'Upload', path: '/upload', icon: Upload },
     { name: 'Results', path: '/results/latest', icon: BarChart },
   ];
@@ -45,7 +46,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
                 <path d="M8.5 15.5c-1.5-1.26-2-5-2-5s-3.74.5-5 1c-1.5 1.26-2 5-2 5s3.74-.5 5-1z" />
               </svg>
             </div>
-            <span className="text-lg font-medium">Agro Vision</span>
+            <span className="text-lg font-medium">Agrovision</span>
           </Link>
           
           {/* Mobile menu button */}
@@ -153,7 +154,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
       {/* Footer */}
       <footer className="bg-rice-50 border-t border-gray-200 py-4">
         <div className="container mx-auto px-4 text-center text-sm text-gray-600">
-          &copy; {new Date().getFullYear()} Agro Vision. All rights reserved.
+          &copy; {new Date().getFullYear()} Agrovision. All rights reserved.
         </div>
       </footer>
     </div>
