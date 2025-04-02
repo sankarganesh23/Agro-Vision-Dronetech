@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
-import { Leaf } from 'lucide-react';
+import { Leaf, ChevronRight, Upload, Activity, Lock } from 'lucide-react';
 
 const Landing = () => {
   const { user } = useAuth();
@@ -13,26 +13,28 @@ const Landing = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Protect Your Rice Plants with AI</h1>
-              <p className="text-lg mb-8">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">Protect Your Rice Plants with AI</h1>
+              <p className="text-lg mb-8 animate-fade-in [animation-delay:100ms]">
                 Upload drone images of your rice crops for instant disease detection and treatment recommendations. Increase yield through early detection.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 animate-fade-in [animation-delay:200ms]">
                 {user ? (
                   <Link to="/dashboard">
-                    <Button size="lg" className="bg-white text-rice-700 hover:bg-rice-100">
+                    <Button size="lg" className="bg-white text-rice-700 hover:bg-rice-100 transition-all duration-300 transform hover:scale-[1.02]">
                       Go to Dashboard
+                      <ChevronRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 ) : (
                   <>
                     <Link to="/login">
-                      <Button size="lg" className="bg-white text-rice-700 hover:bg-rice-100">
+                      <Button size="lg" className="bg-white text-rice-700 hover:bg-rice-100 transition-all duration-300 transform hover:scale-[1.02]">
                         Get Started
+                        <ChevronRight className="ml-2 h-4 w-4" />
                       </Button>
                     </Link>
                     <Link to="/signup">
-                      <Button size="lg" variant="outline" className="border-white text-white hover:bg-rice-600">
+                      <Button size="lg" variant="outline" className="border-white text-white hover:bg-rice-600 transition-all duration-300">
                         Create Account
                       </Button>
                     </Link>
@@ -40,9 +42,9 @@ const Landing = () => {
                 )}
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="bg-rice-600 rounded-lg shadow-lg p-8 flex flex-col items-center justify-center">
-                <Leaf className="w-32 h-32 text-white mb-4" />
+            <div className="md:w-1/2 flex justify-center animate-fade-in [animation-delay:300ms]">
+              <div className="bg-rice-600 rounded-lg shadow-lg p-8 flex flex-col items-center justify-center hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02]">
+                <Leaf className="w-32 h-32 text-white mb-4 animate-pulse" />
                 <h2 className="text-2xl font-bold text-white">Agrovision</h2>
                 <p className="text-white/80 text-center mt-2">AI-Powered Rice Crop Disease Detection</p>
               </div>
@@ -61,20 +63,14 @@ const Landing = () => {
                 title: "Upload",
                 description: "Upload drone images of your rice fields using our simple interface.",
                 icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-rice-600">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" y1="3" x2="12" y2="15" />
-                  </svg>
+                  <Upload className="h-8 w-8 text-rice-600" />
                 )
               },
               {
                 title: "Analyze",
                 description: "Our AI model analyzes the images to detect common rice plant diseases with high accuracy.",
                 icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-rice-600">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                  </svg>
+                  <Activity className="h-8 w-8 text-rice-600" />
                 )
               },
               {
@@ -87,7 +83,11 @@ const Landing = () => {
                 )
               }
             ].map((feature, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div 
+                key={idx} 
+                className="flex flex-col items-center text-center p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow transform hover:scale-[1.01] hover:border-rice-200 duration-300 animate-fade-in [animation-delay:var(--delay)]" 
+                style={{["--delay" as any]: `${idx * 100}ms`}}
+              >
                 <div className="mb-4">
                   {feature.icon}
                 </div>
@@ -167,9 +167,9 @@ const Landing = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between">
             <div className="mb-6 md:mb-0">
-              <h3 className="font-bold text-lg mb-2">Rice Disease Guardian</h3>
+              <h3 className="font-bold text-lg mb-2">Agrovision</h3>
               <p className="text-gray-400 max-w-xs">
-                Protecting your rice crops through advanced AI disease detection technology.
+                Protecting rice crops through advanced AI disease detection technology.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -199,8 +199,20 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} Rice Disease Guardian. All rights reserved.
+          
+          <div className="border-t border-gray-700 mt-8 pt-6 flex justify-between">
+            <div className="text-sm text-gray-400">
+              &copy; {new Date().getFullYear()} Agrovision. All rights reserved.
+            </div>
+            <div>
+              <Link 
+                to="/admin-login" 
+                className="text-sm text-gray-400 hover:text-white flex items-center transition-colors"
+              >
+                <Lock className="h-3 w-3 mr-1" />
+                Admin Access
+              </Link>
+            </div>
           </div>
         </div>
       </footer>
