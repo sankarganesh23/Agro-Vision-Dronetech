@@ -1,12 +1,16 @@
-
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import MainLayout from '@/components/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { AlertTriangle, Check } from 'lucide-react';
+import { AlertTriangle, Check, SendHorizontal } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { toast } from '@/hooks/use-toast';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
-// Mock prediction data (in a real app, this would come from your API)
 const mockPredictions = {
   'analysis-001': {
     id: 'analysis-001',
@@ -77,6 +81,46 @@ const Results = () => {
   const { id = 'analysis-001' } = useParams();
   const prediction = mockPredictions[id as keyof typeof mockPredictions] || mockPredictions['analysis-001'];
   const isHealthy = !prediction.disease;
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSendSMS = async () => {
+    if (!phoneNumber || phoneNumber.length < 10) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid phone number",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Report Sent",
+        description: `The report has been sent to ${phoneNumber}`,
+        variant: "default",
+      });
+      
+      setIsDialogOpen(false);
+      setPhoneNumber('');
+    } catch (error) {
+      toast({
+        title: "Failed to Send",
+        description: "There was an error sending the report. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
   
   return (
     <MainLayout title="Prediction Result">
@@ -163,9 +207,17 @@ const Results = () => {
                   ))}
                 </ul>
                 
-                <div className="mt-6">
+                <div className="mt-6 space-y-2">
                   <Button className="w-full bg-green-600 hover:bg-green-700">
                     Apply Solution
+                  </Button>
+
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    onClick={() => setIsDialogOpen(true)}
+                  >
+                    <SendHorizontal className="h-4 w-4 mr-2" />
+                    Send Report via SMS
                   </Button>
                 </div>
               </div>
@@ -181,11 +233,9 @@ const Results = () => {
                 
                 <div className="h-40 mt-2 relative">
                   <svg className="w-full h-full" viewBox="0 0 300 120">
-                    {/* X and Y axes */}
                     <line x1="40" y1="100" x2="290" y2="100" stroke="white" strokeWidth="1" opacity="0.5" />
                     <line x1="40" y1="20" x2="40" y2="100" stroke="white" strokeWidth="1" opacity="0.5" />
                     
-                    {/* Chart line */}
                     <polyline
                       points="
                         40,100
@@ -201,7 +251,6 @@ const Results = () => {
                       strokeWidth="3"
                     />
                     
-                    {/* Data points */}
                     <circle cx="40" cy="100" r="4" fill="#10B981" />
                     <circle cx="80" cy="90" r="4" fill="#10B981" />
                     <circle cx="120" cy="80" r="4" fill="#10B981" />
@@ -210,7 +259,6 @@ const Results = () => {
                     <circle cx="240" cy="75" r="4" fill="#10B981" />
                     <circle cx="280" cy="80" r="4" fill="#10B981" />
                     
-                    {/* X axis labels */}
                     <text x="40" y="115" fontSize="10" fill="white" textAnchor="middle">Oct 1</text>
                     <text x="120" y="115" fontSize="10" fill="white" textAnchor="middle">Oct 8</text>
                     <text x="200" y="115" fontSize="10" fill="white" textAnchor="middle">Oct 15</text>
@@ -295,6 +343,57 @@ const Results = () => {
           </Button>
         </div>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Send Report via SMS</DialogTitle>
+            <DialogDescription>
+              Enter a phone number to send this report to the farmer or customer.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="phone">Mobile Number</Label>
+              <Input 
+                id="phone"
+                placeholder="Enter mobile number" 
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                type="tel"
+              />
+              <p className="text-sm text-muted-foreground">
+                Format: Country code + number (e.g., +1234567890)
+              </p>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+            <Button 
+              onClick={handleSendSMS} 
+              disabled={isSending}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              {isSending ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <SendHorizontal className="h-4 w-4 mr-2" />
+                  Send Report
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </MainLayout>
   );
 };
