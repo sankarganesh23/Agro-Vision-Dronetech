@@ -54,18 +54,24 @@ const mockPredictions = {
       'Consider increasing spacing between plants',
       'Apply balanced NPK fertilizers'
     ]
+  },
+  'latest': {
+    id: 'latest',
+    cropName: 'Rice',
+    date: '2023-10-18',
+    location: 'Field C',
+    disease: 'Brown Spot',
+    confidence: 95,
+    severity: 'High',
+    imageUrl: '/lovable-uploads/1bd73c41-65f4-4603-823f-c4d9e728a374.png',
+    solutions: [
+      'Apply recommended fungicides immediately',
+      'Improve field drainage to reduce humidity',
+      'Consider increasing spacing between plants',
+      'Apply balanced NPK fertilizers'
+    ]
   }
 };
-
-// Mock chart data for disease spread visualization
-const mockChartData = [
-  { date: 'Oct 1', value: 0 },
-  { date: 'Oct 4', value: 10 },
-  { date: 'Oct 8', value: 15 },
-  { date: 'Oct 12', value: 30 },
-  { date: 'Oct 16', value: 25 },
-  { date: 'Oct 20', value: 20 },
-];
 
 const Results = () => {
   const { id = 'analysis-001' } = useParams();

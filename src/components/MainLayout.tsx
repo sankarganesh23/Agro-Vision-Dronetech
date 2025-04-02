@@ -45,7 +45,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
                 <path d="M8.5 15.5c-1.5-1.26-2-5-2-5s-3.74.5-5 1c-1.5 1.26-2 5-2 5s3.74-.5 5-1z" />
               </svg>
             </div>
-            <span className="text-lg font-medium">Rice Disease Guardian</span>
+            <span className="text-lg font-medium">Agro Vision</span>
           </Link>
           
           {/* Mobile menu button */}
@@ -97,45 +97,43 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
         </div>
         
         {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-rice-700 pb-3 px-4">
-            {user && navigation.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={cn(
-                  "flex items-center space-x-2 py-2 text-white/80 hover:text-white",
-                  location.pathname === item.path && "text-white font-medium"
-                )}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <item.icon className="h-4 w-4" />
-                <span>{item.name}</span>
-              </Link>
-            ))}
-            {user ? (
-              <button 
-                onClick={() => {
-                  handleLogout();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex w-full items-center space-x-2 py-2 text-white/80 hover:text-white"
-              >
-                <LogOut className="h-4 w-4" />
-                <span>Logout</span>
-              </button>
-            ) : (
-              <Link 
-                to="/login"
-                className="flex items-center space-x-2 py-2 text-white/80 hover:text-white"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <User className="h-4 w-4" />
-                <span>Login</span>
-              </Link>
-            )}
-          </div>
-        )}
+        <div className={`md:hidden bg-rice-700 pb-3 px-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+          {user && navigation.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={cn(
+                "flex items-center space-x-2 py-2 text-white/80 hover:text-white",
+                location.pathname === item.path && "text-white font-medium"
+              )}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <item.icon className="h-4 w-4" />
+              <span>{item.name}</span>
+            </Link>
+          ))}
+          {user ? (
+            <button 
+              onClick={() => {
+                handleLogout();
+                setIsMobileMenuOpen(false);
+              }}
+              className="flex w-full items-center space-x-2 py-2 text-white/80 hover:text-white"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Logout</span>
+            </button>
+          ) : (
+            <Link 
+              to="/login"
+              className="flex items-center space-x-2 py-2 text-white/80 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <User className="h-4 w-4" />
+              <span>Login</span>
+            </Link>
+          )}
+        </div>
       </header>
 
       {/* Main content */}
@@ -155,7 +153,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
       {/* Footer */}
       <footer className="bg-rice-50 border-t border-gray-200 py-4">
         <div className="container mx-auto px-4 text-center text-sm text-gray-600">
-          &copy; {new Date().getFullYear()} Rice Disease Guardian. All rights reserved.
+          &copy; {new Date().getFullYear()} Agro Vision. All rights reserved.
         </div>
       </footer>
     </div>
