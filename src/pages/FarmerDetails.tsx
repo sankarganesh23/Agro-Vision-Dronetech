@@ -13,6 +13,7 @@ const FarmerDetails = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
+  const [state, setState] = useState('');
   const [coordinates, setCoordinates] = useState<{lat: number, lng: number} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -22,7 +23,7 @@ const FarmerDetails = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !phone || !location) {
+    if (!name || !phone || !location || !state) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields",
@@ -48,6 +49,7 @@ const FarmerDetails = () => {
         name,
         phone,
         location,
+        state,
         coordinates
       });
       
@@ -105,15 +107,28 @@ const FarmerDetails = () => {
               </div>
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="location">Field Location Name</Label>
-              <Input 
-                id="location" 
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="e.g., North Field, Block A" 
-                required
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="location">Field Location Name</Label>
+                <Input 
+                  id="location" 
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g., North Field, Block A" 
+                  required
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="state">State</Label>
+                <Input 
+                  id="state" 
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  placeholder="e.g., Karnataka, Tamil Nadu" 
+                  required
+                />
+              </div>
             </div>
             
             <LocationDetector 
