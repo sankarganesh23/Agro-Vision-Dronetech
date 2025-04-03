@@ -19,7 +19,7 @@ const mockPredictions = {
     disease: 'Leaf Blight',
     confidence: 92,
     severity: 'Medium',
-    imageUrl: '/lovable-uploads/9f546f95-1f2c-4623-ab37-6ebaad56cf8e.png',
+    imageUrl: '/lovable-uploads/rice-leaf-blight.png',
     solutions: [
       'Apply fungicides containing tricyclazole',
       'Ensure proper drainage around plants',
@@ -35,7 +35,7 @@ const mockPredictions = {
     disease: null,
     confidence: 89,
     severity: null,
-    imageUrl: '/lovable-uploads/4d05e7a4-06b2-4e87-acf0-28ecea5121a6.png',
+    imageUrl: '/lovable-uploads/healthy-rice-field.png',
     solutions: [
       'Continue current cultivation practices',
       'Regularly monitor for any signs of disease',
@@ -50,7 +50,7 @@ const mockPredictions = {
     disease: 'Brown Spot',
     confidence: 95,
     severity: 'High',
-    imageUrl: '/lovable-uploads/1bd73c41-65f4-4603-823f-c4d9e728a374.png',
+    imageUrl: '/lovable-uploads/rice-brown-spot.png',
     solutions: [
       'Apply recommended fungicides immediately',
       'Improve field drainage to reduce humidity',
@@ -66,7 +66,7 @@ const mockPredictions = {
     disease: 'Brown Spot',
     confidence: 95,
     severity: 'High',
-    imageUrl: '/lovable-uploads/1bd73c41-65f4-4603-823f-c4d9e728a374.png',
+    imageUrl: '/lovable-uploads/rice-brown-spot.png',
     solutions: [
       'Apply recommended fungicides immediately',
       'Improve field drainage to reduce humidity',
