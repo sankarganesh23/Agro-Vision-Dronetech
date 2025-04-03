@@ -1,17 +1,16 @@
-
 import { useParams, useNavigate } from 'react-router-dom';
 import MainLayout from '@/components/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { AlertTriangle, Check, SendHorizontal } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { toast } from '@/hooks/use-toast';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-// Updated mock data with correct image paths
 const mockPredictions = {
   'analysis-001': {
     id: 'analysis-001',

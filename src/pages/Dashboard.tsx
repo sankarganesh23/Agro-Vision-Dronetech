@@ -1,10 +1,11 @@
+
 import MainLayout from '@/components/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { BarChart, Upload, AlertTriangle, Check } from 'lucide-react';
-import Appointments from '@/components/Appointments';
 
+// Mock data for the demo
 const mockAnalysisData = [
   {
     id: 'analysis-001',
@@ -97,11 +98,6 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Appointments Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <Appointments />
-        </div>
-        
         {/* Quick Action */}
         <div className="flex justify-end">
           <Link to="/upload">

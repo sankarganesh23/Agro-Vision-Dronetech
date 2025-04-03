@@ -12,8 +12,6 @@ import LocationDetector from '@/components/LocationDetector';
 const FarmerDetails = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [state, setState] = useState('');
-  const [area, setArea] = useState('');
   const [location, setLocation] = useState('');
   const [coordinates, setCoordinates] = useState<{lat: number, lng: number} | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,7 +22,7 @@ const FarmerDetails = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !phone || !location || !state || !area) {
+    if (!name || !phone || !location) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields",
@@ -49,8 +47,6 @@ const FarmerDetails = () => {
       console.log("Farmer Details:", {
         name,
         phone,
-        state,
-        area,
         location,
         coordinates
       });
@@ -104,30 +100,6 @@ const FarmerDetails = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Your contact number" 
-                  required
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="state">State</Label>
-                <Input 
-                  id="state" 
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                  placeholder="Your state" 
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="area">Area</Label>
-                <Input 
-                  id="area" 
-                  value={area}
-                  onChange={(e) => setArea(e.target.value)}
-                  placeholder="Your area" 
                   required
                 />
               </div>

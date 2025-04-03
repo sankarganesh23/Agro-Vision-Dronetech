@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Home, Upload, BarChart, User, LogOut, Users, Settings } from 'lucide-react';
+import { Home, Upload, BarChart, User, LogOut, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/components/ui/use-toast';
 import { useState } from 'react';
@@ -31,7 +31,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
     { name: 'Farmer Details', path: '/farmer-details', icon: Users },
     { name: 'Upload', path: '/upload', icon: Upload },
     { name: 'Results', path: '/results/latest', icon: BarChart },
-    { name: 'Admin Dashboard', path: '/admin-dashboard', icon: Settings },
   ];
 
   return (
