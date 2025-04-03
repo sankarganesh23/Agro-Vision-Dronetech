@@ -1,4 +1,3 @@
-
 import MainLayout from '@/components/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +14,7 @@ const mockAnalysisData = [
     location: 'Field A',
     status: 'Diseased',
     disease: 'Leaf Blight',
-    image: '/lovable-uploads/9f546f95-1f2c-4623-ab37-6ebaad56cf8e.png'
+    image: '/lovable-uploads/rice-leaf-blight.png'
   },
   {
     id: 'analysis-002',
@@ -24,7 +23,7 @@ const mockAnalysisData = [
     location: 'Field B',
     status: 'Healthy',
     disease: null,
-    image: '/lovable-uploads/4d05e7a4-06b2-4e87-acf0-28ecea5121a6.png'
+    image: '/lovable-uploads/healthy-rice-field.png'
   },
   {
     id: 'analysis-003',
@@ -33,7 +32,7 @@ const mockAnalysisData = [
     location: 'Field C',
     status: 'Diseased',
     disease: 'Brown Spot',
-    image: '/lovable-uploads/1bd73c41-65f4-4603-823f-c4d9e728a374.png'
+    image: '/lovable-uploads/rice-brown-spot.png'
   }
 ];
 
